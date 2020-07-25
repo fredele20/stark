@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 	"stark/api"
 	"stark/database"
 	"stark/domain"
@@ -19,7 +20,8 @@ var (
 )
 
 func main() {
-	const port string = ":4000"
+	port := os.Getenv("APP_ENV")
+	defaultPort := "8080"
 
 	httpRouter.GET("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "up and running")
@@ -29,6 +31,12 @@ func main() {
 	httpRouter.GET("/applicant", userApi.Applicant)
 	httpRouter.POST("/upload", userApi.UploadFile)
 
-	httpRouter.SERVER(port)
+	if !(port == "") {
+		httpRouter.SERVER(":"+port)
+	} else {
+		httpRouter.SERVER(":"+defaultPort)
+	}
+
+
 }
 
