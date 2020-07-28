@@ -53,10 +53,10 @@ func (s *service) Validate(user *model.User) error {
 		return err
 	}
 
-	if user.WorkHistory == nil {
-		err := errors.New("work history can not be empty")
-		return err
-	}
+	//if user.WorkHistory == nil {
+	//	err := errors.New("work history can not be empty")
+	//	return err
+	//}
 	return nil
 }
 

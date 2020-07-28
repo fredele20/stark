@@ -21,7 +21,7 @@ var Collection *mongo.Collection
 func init() {
 	MONGODB := os.Getenv("MONGODB")
 	// set client options
-	clientOption := options.Client().ApplyURI(os.Getenv(MONGODB))
+	clientOption := options.Client().ApplyURI(MONGODB)
 
 	// connect to db
 	client, err := mongo.Connect(context.TODO(), clientOption)
