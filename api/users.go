@@ -21,7 +21,7 @@ type api struct {
 	userService service.UserService
 }
 
-func NewMeetupApi(service service.UserService) UserApi { return &api{service} }
+func NewUserApi(service service.UserService) UserApi { return &api{service} }
 
 func (a *api) Apply(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")

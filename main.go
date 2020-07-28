@@ -15,12 +15,12 @@ var (
 	userDatabase database.User        = database.NewUserDB()
 	userDomain   domain.UserDomain    = domain.NewUserDomain(userDatabase)
 	userService  service.UserService = service.NewUserService(userDomain)
-	userApi      api.UserApi          = api.NewMeetupApi(userService)
+	userApi      api.UserApi          = api.NewUserApi(userService)
 	httpRouter   router.Router        = router.NewMuxRouter()
 )
 
 func main() {
-	port := os.Getenv("APP_ENV")
+	port := os.Getenv("PORT")
 	defaultPort := "8080"
 
 	httpRouter.GET("/", func(w http.ResponseWriter, r *http.Request) {
